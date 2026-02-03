@@ -156,10 +156,14 @@ textarea{ min-height: 80px; resize: vertical; }
   }
 
   .printText{
-    font-size: 16pt;
-    line-height: 1.2;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 10pt;
+  line-height: 1.15;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  height: 100%;
+  overflow: hidden;
+}
   }
 
   .guides .cardBox::after{
