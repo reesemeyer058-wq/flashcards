@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flashcards (3×5 cut & duplex)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="wrap">
+    <h1>Flashcards (3×5)</h1>
+
+    <div class="row gap">
+      <button id="btnAdd" class="btn">+ Add card</button>
+      <button id="btnBulk" class="btn subtle">Import Q/A</button>
+      <button id="btnExport" class="btn subtle">Export</button>
+      <label class="btn subtle file">
+        Import JSON<input id="fileImport" type="file" accept="application/json" hidden>
+      </label>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <h2>Print</h2>
+
+      <div class="grid2">
+        <div class="box">
+          <h3>Print steps</h3>
+          <ol class="small">
+            <li>Click <b>Print fronts</b> → print on normal letter paper.</li>
+            <li>Put the same paper back in your printer.</li>
+            <li>Click <b>Print backs</b>.</li>
+          </ol>
+          <ul class="small">
+            <li><b>Scale:</b> 100% (turn OFF “Fit to page”).</li>
+            <li>These print as <b>outlined 3×5 boxes</b> so you can cut them out.</li>
+          </ul>
+
+          <div class="row gap">
+            <button id="btnTest" class="btn subtle">Print test sheet</button>
+            <button id="btnPrintFronts" class="btn">Print fronts</button>
+            <button id="btnPrintBacks" class="btn">Print backs</button>
+          </div>
+        </div>
+
+        <div class="box">
+          <h3>Fix back-side alignment (if needed)</h3>
+
+          <label class="row gap">
+            <span class="label">Flip direction</span>
+            <select id="flipMode">
+              <option value="long">Flip on long edge</option>
+              <option value="short">Flip on short edge</option>
+            </select>
+          </label>
+
+          <label class="row gap">
+            <span class="label">Back order</span>
+            <select id="backOrder">
+              <option value="same">Same order</option>
+              <option value="reverse">Reverse order</option>
+            </select>
+          </label>
+
+          <label class="row gap">
+            <span class="label">Guides</span>
+            <input id="guides" type="checkbox" />
+          </label>
+
+          <p class="small">
+            Use <b>Print test sheet</b> first to figure out the right settings for your printer.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Mass import</h2>
+      <p class="small">
+        Click <b>Import Q/A</b> and paste stuff like:
+      </p>
+      <pre class="small" style="background:#f5f5f7; padding:10px; border-radius:12px; border:1px solid #e6e6ea; overflow:auto;">Q: What is 2+2?
+A: 4
+Q: Capital of France?
+A: Paris</pre>
+    </section>
+
+    <section class="panel">
+      <h2>Cards</h2>
+      <div id="cards"></div>
+      <p id="empty" class="muted">No cards yet. Click “Add card”.</p>
+    </section>
+  </main>
+
+  <!-- Bulk import modal -->
+  <div id="bulkModal" class="modal" aria-hidden="true">
+    <div class="modalCard">
+      <div class="row" style="justify-content:space-between; gap:10px;">
+        <h2 style="margin:0;">Mass import (Q:/A:)</h2>
+        <button id="btnBulkClose" class="btn subtle" type="button">Close</button>
+      </div>
+
+      <p class="small">
+        Anything after <b>Q:</b> up to <b>A:</b> is the question.
+        Anything after <b>A:</b> up to the next <b>Q:</b> is the answer.
+      </p>
+
+      <textarea id="bulkText" placeholder="Q: Question 1
+A: Answer 1
+
+Q: Question 2
+A: Answer 2"></textarea>
+
+      <div class="row gap" style="justify-content:flex-end; margin-top:10px;">
+        <label class="row gap small" style="align-items:center;">
+          <input id="bulkReplace" type="checkbox" />
+          Replace existing cards
+        </label>
+        <button id="btnBulkImport" class="btn" type="button">Import</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Print-only container -->
+  <div id="printRoot" aria-hidden="true"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

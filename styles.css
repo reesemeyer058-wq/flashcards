@@ -1,0 +1,178 @@
+:root{
+  --max: 1000px;
+  --pad: 18px;
+  --fg: #111;
+  --muted: #666;
+  --bg: #fff;
+  --card: #f5f5f7;
+  --border: #e6e6ea;
+}
+
+*{ box-sizing: border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color: var(--fg);
+  background: var(--bg);
+}
+.wrap{ max-width: var(--max); margin:0 auto; padding: var(--pad); }
+
+header{
+  position: sticky;
+  top:0;
+  background: rgba(255,255,255,.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+h1{ font-size: 18px; margin: 0; }
+h2{ font-size: 16px; margin: 0 0 10px; }
+h3{ font-size: 14px; margin: 0 0 8px; }
+
+.panel{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin: 14px 0;
+}
+
+.row{ display:flex; align-items:center; }
+.gap{ gap:10px; }
+.grid2{ display:grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 860px){ .grid2{ grid-template-columns: 1fr 1fr; } }
+
+.box{
+  background: var(--card);
+  border-radius: 14px;
+  padding: 12px;
+  border: 1px solid var(--border);
+}
+
+.btn{
+  border:0;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font: inherit;
+  cursor:pointer;
+  background:#111;
+  color:#fff;
+}
+.btn.subtle{
+  background: #fff;
+  color: #111;
+  border: 1px solid var(--border);
+}
+.btn.file{ display:inline-flex; align-items:center; }
+
+.small{ font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+.muted{ color: var(--muted); }
+
+.label{ width: 120px; font-size: 13px; color: var(--muted); }
+select, textarea{
+  font: inherit;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  width: 100%;
+  background:#fff;
+}
+textarea{ min-height: 80px; resize: vertical; }
+
+.cardItem{
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  margin: 10px 0;
+  display:grid;
+  gap: 10px;
+}
+.cardItem .cols{
+  display:grid;
+  gap:10px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 860px){
+  .cardItem .cols{ grid-template-columns: 1fr 1fr; }
+}
+
+.cardActions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+}
+
+/* Modal */
+.modal{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding: 18px;
+}
+.modal[aria-hidden="false"]{ display:flex; }
+.modalCard{
+  width: min(900px, 100%);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+/* ---------------- PRINTING (Letter paper + 3x5 cut boxes) ---------------- */
+@page{
+  size: 8.5in 11in;
+  margin: 0.25in; /* printer-safe margin */
+}
+
+@media print{
+  header, main{ display:none !important; }
+  #printRoot{ display:block; }
+
+  /* One printed page */
+  .sheet{
+    width: 8in;
+    height: 10.5in;
+    display: grid;
+    grid-template-columns: 3in 3in;
+    grid-template-rows: 5in 5in;
+    gap: 0.25in;
+    page-break-after: always;
+  }
+
+  /* Each cut-out card box */
+  .cardBox{
+    width: 3in;
+    height: 5in;
+    border: 1px solid #000;   /* cut line */
+    padding: 0.2in;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .printText{
+    font-size: 16pt;
+    line-height: 1.2;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .guides .cardBox::after{
+    content:"";
+    position:absolute;
+    inset: 0.15in;
+    border: 1px dashed #999;
+    pointer-events:none;
+  }
+
+  /* For back side (manual duplex) */
+  .flip-long .cardBox{
+    transform: rotate(180deg);
+    transform-origin: center;
+  }
+}
