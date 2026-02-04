@@ -5,12 +5,8 @@
   --border: rgba(255,255,255,0.14);
   --text: rgba(255,255,255,0.92);
   --muted: rgba(255,255,255,0.62);
-  --accent: #7c3aed;
-  --accent2: #22c55e;
-  --danger: #ef4444;
   --shadow: 0 20px 60px rgba(0,0,0,.45);
   --radius: 18px;
-  --radius2: 14px;
 }
 
 *{ box-sizing:border-box; }
@@ -26,87 +22,52 @@ body{
     var(--bg);
 }
 
-.wrap{
-  max-width: 1150px;
-  margin: 0 auto;
-  padding: 22px;
-}
+.wrap{ max-width: 1150px; margin: 0 auto; padding: 22px; }
 
-/* Topbar */
 .topbar{
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 14px 22px;
+  position: sticky; top: 0; z-index: 10;
+  display:flex; align-items:center; justify-content: space-between;
+  gap: 16px; padding: 14px 22px;
   border-bottom: 1px solid var(--border);
   background: rgba(10,10,15,0.72);
   backdrop-filter: blur(14px);
 }
-
 .brand{ display:flex; align-items:center; gap:12px; }
 .logo{
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight: 800;
-  letter-spacing: .5px;
+  width: 44px; height: 44px; border-radius: 14px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight: 800; letter-spacing: .5px;
   background: linear-gradient(135deg, rgba(124,58,237,1), rgba(34,197,94,1));
-  box-shadow: 0 12px 40px rgba(124,58,237,.22);
 }
 .title{ font-weight: 800; font-size: 15px; }
 .subtitle{ font-size: 12px; color: var(--muted); margin-top: 2px; }
-
 .topActions{ display:flex; align-items:center; gap:10px; flex-wrap: wrap; }
 
-/* Buttons */
 .btn{
   border: 1px solid var(--border);
-  background: var(--panel);
+  background: rgba(255,255,255,0.06);
   color: var(--text);
   padding: 10px 12px;
   border-radius: 14px;
   cursor: pointer;
   font-weight: 700;
-  letter-spacing: .1px;
-  transition: transform .08s ease, background .15s ease, border-color .15s ease;
-  user-select: none;
 }
-.btn:hover{ background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
-.btn:active{ transform: translateY(1px) scale(0.99); }
-
 .btn.primary{
   border: none;
   background: linear-gradient(135deg, rgba(124,58,237,1), rgba(34,197,94,1));
-  box-shadow: 0 14px 50px rgba(124,58,237,.22);
-}
-.btn.primary:hover{ filter: brightness(1.06); }
-.btn.ghost{
-  background: rgba(255,255,255,0.06);
 }
 .btn.big{ padding: 12px 14px; border-radius: 16px; }
-
 .btn.file{ display:inline-flex; align-items:center; gap:10px; }
 
-/* Hero */
 .hero{
-  display:grid;
-  gap: 18px;
+  display:grid; gap: 18px;
   grid-template-columns: 1.4fr .9fr;
   align-items: start;
   margin-top: 14px;
 }
-@media (max-width: 980px){
-  .hero{ grid-template-columns: 1fr; }
-}
+@media (max-width: 980px){ .hero{ grid-template-columns: 1fr; } }
 
-.heroLeft{
+.heroLeft, .panel, .content{
   background: var(--panel2);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -114,17 +75,8 @@ body{
   box-shadow: var(--shadow);
 }
 
-.heroLeft h1{
-  margin: 0 0 8px;
-  font-size: 28px;
-  letter-spacing: -0.4px;
-}
-.heroLeft p{
-  margin: 0 0 14px;
-  color: var(--muted);
-  line-height: 1.35;
-}
-
+.heroLeft h1{ margin: 0 0 8px; font-size: 28px; }
+.heroLeft p{ margin: 0 0 14px; color: var(--muted); line-height: 1.35; }
 .heroButtons{ display:flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 10px; }
 
 .pillRow{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
@@ -137,19 +89,7 @@ body{
   background: rgba(255,255,255,0.05);
 }
 
-/* Right panel */
-.panel{
-  background: var(--panel2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  box-shadow: var(--shadow);
-}
-.panel h2{
-  margin: 0 0 12px;
-  font-size: 15px;
-  letter-spacing: .2px;
-}
+.panel h2, .contentHeader h2{ margin:0 0 12px; font-size: 15px; }
 
 .field{ display:flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
 .field label{ font-size: 12px; color: var(--muted); font-weight: 700; }
@@ -163,16 +103,12 @@ select{
   font-weight: 700;
 }
 .rowline{
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 12px;
+  display:flex; align-items:center; justify-content: space-between;
+  gap: 12px; padding: 10px 12px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.04);
 }
-.rowline label{ margin:0; }
 .help{
   margin-top: 10px;
   padding: 12px;
@@ -184,29 +120,11 @@ select{
   line-height: 1.3;
 }
 
-/* Content list */
-.content{
-  margin-top: 16px;
-  background: var(--panel2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  box-shadow: var(--shadow);
-}
 .contentHeader{
-  display:flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
+  display:flex; align-items: baseline; justify-content: space-between; gap: 12px;
   margin-bottom: 8px;
 }
-.contentHeader h2{
-  margin: 0;
-  font-size: 15px;
-  letter-spacing: .2px;
-}
 .muted{ color: var(--muted); }
-
 .empty{
   margin-top: 12px;
   padding: 14px;
@@ -216,7 +134,6 @@ select{
   background: rgba(255,255,255,0.03);
 }
 
-/* Card editor */
 .cardItem{
   border: 1px solid rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.04);
@@ -225,23 +142,16 @@ select{
   margin: 12px 0;
 }
 .cardTop{
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 12px;
+  display:flex; align-items:center; justify-content: space-between; gap: 12px;
   margin-bottom: 10px;
 }
-.cardTop strong{ letter-spacing: .1px; }
 .cardTop .id{ font-size: 12px; color: rgba(255,255,255,0.55); }
 
 .cols{
-  display:grid;
-  gap: 12px;
-  grid-template-columns: 1fr 1fr;
+  display:grid; gap: 12px; grid-template-columns: 1fr 1fr;
 }
-@media (max-width: 900px){
-  .cols{ grid-template-columns: 1fr; }
-}
+@media (max-width: 900px){ .cols{ grid-template-columns: 1fr; } }
+
 .sideLabel{
   font-size: 12px;
   color: rgba(255,255,255,0.62);
@@ -251,7 +161,7 @@ select{
 textarea.editor{
   width: 100%;
   min-height: 96px;
-  padding: 12px 12px;
+  padding: 12px;
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.12);
   background: rgba(0,0,0,0.28);
@@ -265,7 +175,6 @@ textarea.editor:focus{
   border-color: rgba(124,58,237,0.55);
   box-shadow: 0 0 0 4px rgba(124,58,237,0.18);
 }
-
 .cardActions{
   margin-top: 10px;
   display:flex;
@@ -275,14 +184,10 @@ textarea.editor:focus{
 
 /* Modal */
 .modal{
-  position: fixed;
-  inset: 0;
+  position: fixed; inset: 0;
   background: rgba(0,0,0,0.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding: 18px;
-  z-index: 30;
+  display:none; align-items:center; justify-content:center;
+  padding: 18px; z-index: 30;
 }
 .modal[aria-hidden="false"]{ display:flex; }
 .modalCard{
@@ -295,21 +200,8 @@ textarea.editor:focus{
   padding: 16px;
 }
 .modalTop{
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 12px;
+  display:flex; align-items:center; justify-content: space-between; gap: 12px;
   margin-bottom: 10px;
-}
-.modalTitle{
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: .2px;
-}
-.modalSubtitle{
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
-  margin-top: 2px;
 }
 .bulkArea{
   width: 100%;
@@ -325,26 +217,17 @@ textarea.editor:focus{
 }
 .modalBottom{
   margin-top: 10px;
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 12px;
+  display:flex; align-items:center; justify-content: space-between; gap: 12px;
 }
 .checkRow{
-  display:flex;
-  align-items:center;
-  gap: 8px;
+  display:flex; align-items:center; gap: 8px;
   color: rgba(255,255,255,0.72);
   font-size: 12px;
   font-weight: 800;
 }
 
 /* ---------------- PRINT ---------------- */
-/* We keep print clean and deterministic. UI doesn't print. */
-@page{
-  size: 8.5in 11in;
-  margin: 0.25in;
-}
+@page{ size: 8.5in 11in; margin: 0.25in; }
 
 @media print{
   body{ background:#fff !important; color:#000 !important; }
@@ -378,7 +261,6 @@ textarea.editor:focus{
     pointer-events:none;
   }
 
-  /* Flashcard text: Times New Roman 10pt and rotated to read like a traditional flashcard */
   .printText{
     font-family: "Times New Roman", Times, serif;
     font-size: 10pt;
@@ -386,6 +268,7 @@ textarea.editor:focus{
     white-space: pre-wrap;
     word-wrap: break-word;
 
+    /* traditional flashcard reading orientation */
     transform: rotate(-90deg);
     transform-origin: center;
 
@@ -399,8 +282,8 @@ textarea.editor:focus{
     text-align:left;
   }
 
-  /* Manual duplex: flip-long rotates the card content on back pass */
-  .flip-long .cardBox{
+  /* optional rotation applied on back pass */
+  .back-rotate-180 .cardBox{
     transform: rotate(180deg);
     transform-origin: center;
   }
