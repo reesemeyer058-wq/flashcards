@@ -19,7 +19,6 @@
     <div class="topActions">
       <button id="btnAdd" class="btn primary">+ Add</button>
       <button id="btnBulk" class="btn ghost">Import Q/A</button>
-
       <button id="btnExport" class="btn ghost">Export</button>
       <label class="btn ghost file">
         Import JSON
@@ -33,8 +32,8 @@
       <div class="heroLeft">
         <h1>Printable 3×5 flashcards</h1>
         <p>
-          Paste <b>Q:</b> / <b>A:</b> in bulk, print fronts, reload paper, print backs.
-          Cut on the lines. Done.
+          Print fronts, put the stack back the way you always do, print backs.
+          If backs land wrong, adjust the <b>Back alignment</b> controls (software adapts to you).
         </p>
 
         <div class="heroButtons">
@@ -48,27 +47,37 @@
           <span class="pill">Letter paper</span>
           <span class="pill">4 cards per page</span>
           <span class="pill">Cut boxes</span>
-          <span class="pill">Manual duplex</span>
+          <span class="pill">Software calibration</span>
         </div>
       </div>
 
       <div class="heroRight">
         <div class="panel">
-          <h2>Print settings</h2>
+          <h2>Back alignment (software)</h2>
 
           <div class="field">
-            <label>Flip direction</label>
-            <select id="flipMode">
-              <option value="long">Flip on long edge (book)</option>
-              <option value="short">Flip on short edge (notepad)</option>
+            <label>Deck order</label>
+            <select id="backOrder">
+              <option value="same">Same order</option>
+              <option value="reverse">Reverse order (by sheets)</option>
             </select>
           </div>
 
           <div class="field">
-            <label>Back order</label>
-            <select id="backOrder">
-              <option value="same">Same order</option>
-              <option value="reverse">Reverse order</option>
+            <label>Within-sheet mapping (fixes Q1→A3 type swaps)</label>
+            <select id="backMap">
+              <option value="none">None (1→1, 2→2, 3→3, 4→4)</option>
+              <option value="swapRows">Swap rows (1↔3, 2↔4)</option>
+              <option value="swapCols">Swap columns (1↔2, 3↔4)</option>
+              <option value="rotate180">Rotate positions (1↔4, 2↔3)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Back rotation (fix upside-down)</label>
+            <select id="backRotate">
+              <option value="0">0° (normal)</option>
+              <option value="180">180° (upside-down fix)</option>
             </select>
           </div>
 
@@ -78,10 +87,11 @@
           </div>
 
           <div class="help">
-            <div><b>Always print at 100% scale.</b></div>
-            <div>Turn off “Fit to page”.</div>
-            <div>If text is upside down → change flip direction.</div>
-            <div>If answers land on wrong cards → change back order.</div>
+            <div><b>Do this to calibrate:</b></div>
+            <div>1) Click <b>Test front</b> (prints 2 pages)</div>
+            <div>2) Put paper back exactly how you’ve been doing</div>
+            <div>3) Click <b>Test back</b></div>
+            <div>Then adjust dropdowns until Q1→A1 and text is right-side up.</div>
           </div>
         </div>
       </div>
@@ -106,7 +116,7 @@
       <div class="modalTop">
         <div>
           <div class="modalTitle">Mass import (Q:/A:)</div>
-          <div class="modalSubtitle">Multiline supported. Q: → A: is front. A: → next Q: is back.</div>
+          <div class="modalSubtitle">Multiline supported. Q:→A is front. A:→next Q is back.</div>
         </div>
         <button id="btnBulkClose" class="btn ghost">Close</button>
       </div>
